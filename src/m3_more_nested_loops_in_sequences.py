@@ -108,16 +108,16 @@ def run_test_largest_negative_number():
     print('Testing the   LARGEST_NEGATIVE_NUMBER   function:')
     print('-------------------------------------------------')
 
-    expected = -1
-    answer = largest_negative_number(([-10], [-100], [-1]))
+    expected = -100
+    answer = largest_negative_number([(10, -100, 1)])
     print('Expected and actual are:', expected, answer)
 
-    expected = -5
-    answer = largest_negative_number(([-9999], [-5], [-500], [-99]))
+    expected = -9999
+    answer = largest_negative_number([(-9999, -5, -500, -99)])
     print('Expected and actual are:', expected, answer)
 
-    expected = -10
-    answer = largest_negative_number(([-10, -20, -30, -40, -50, -70]))
+    expected = -70
+    answer = largest_negative_number([(-10, -20, -30, -40, -50, -70)])
     print('Expected and actual are:', expected, answer)
 
 
@@ -153,13 +153,13 @@ def largest_negative_number(seq_seq):
     # -------------------------------------------------------------------------
     biggest = None
     for k in range(len(seq_seq)):
-        sub = seq_seq[k]
-        for j in range(len(sub)):
-            if sub[j] < biggest:
-                biggest = sub[j]
-            if biggest >= 0:
-                biggest = None
-    return biggest
+        for j in range(len(seq_seq[k])):
+            if biggest is None or (seq_seq[k][j] < biggest and seq_seq[k][j] < 0):
+                biggest = seq_seq[k][j]
+    if biggest < 0:
+        return biggest
+    else:
+        return None
 
 
 def run_test_first_is_elsewhere_too():
@@ -420,7 +420,6 @@ def first_is_elsewhere_too(seq_seq):
                 if first == seq_seq[j][m]:
                     return True
     return False
-
 
 
 # -----------------------------------------------------------------------------
