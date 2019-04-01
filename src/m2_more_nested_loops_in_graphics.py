@@ -61,7 +61,7 @@ def draw_upside_down_wall(rectangle, n, window):
     width = rectangle.get_width()
 
     for k in range(n):
-        for j in range(n + 1):
+        for j in range(k + 1):
             rectangle = rg.Rectangle(u_left, l_right)
             rectangle.attach_to(window)
             window.render()
@@ -70,7 +70,7 @@ def draw_upside_down_wall(rectangle, n, window):
         u_left.y = u_left.y - height
         u_left.x = og_u_left.x - (width / 2 * (k + 1))
         l_right.y = l_right.y - height
-        l_right.x = og_l_right.x - (width/2 * (k + 1))
+        l_right.x = og_l_right.x - (width / 2 * (k + 1))
 
 
 # -----------------------------------------------------------------------------
